@@ -27,17 +27,8 @@ export default function Layout() {
           />
           <Image source={images.logo} className="absolute -bottom-16 z-10 size-48 self-center" />
         </View>
-
-        <CustomInput
-          placeholder="Enter your email"
-          value={''}
-          onChangeText={(text) => {}}
-          label="Email"
-          keyboardType="email-address"
-        />
-        <CustomButton />
+        <Slot />
       </ScrollView>
-      <Slot />
     </KeyboardAvoidingView>
   );
 }

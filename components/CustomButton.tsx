@@ -1,11 +1,27 @@
-import { View, Text } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
+import { CustomButtonProps } from '@/type';
+import cn from 'clsx';
 
-const CustomButton = () => {
+const CustomButton = ({
+  onPress,
+  title = 'Click Me!',
+  style,
+  textStyle,
+  leftIcon,
+  isLoading,
+}: CustomButtonProps) => {
   return (
-    <View>
-      <Text>CustomButton</Text>
-    </View>
+    <TouchableOpacity className={cn('custom-btn', style)} onPress={onPress}>
+      {leftIcon}
+      <View className="flex-center flex-row">
+        {isLoading ? (
+          <ActivityIndicator size="small" color="white" />
+        ) : (
+          <Text className={cn('paragraph-semibold text-white-100', textStyle)}>{title}</Text>
+        )}
+      </View>
+    </TouchableOpacity>
   );
 };
 
