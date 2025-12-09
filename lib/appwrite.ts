@@ -36,10 +36,10 @@ export const createUser = async ({ name, email, password }: CreateUserParams) =>
       collectionId: appwriteConfig.userCollectionId,
       documentId: ID.unique(),
       data: {
-        $id: newAccount.$id,
         email: newAccount.email,
         name: newAccount.name,
         avatar: avatarUrl,
+        accountId: newAccount.$id,
       },
     });
 
@@ -53,6 +53,14 @@ export const createUser = async ({ name, email, password }: CreateUserParams) =>
 
 export const signIn = async ({ email, password }: SignInParams) => {
   try {
+    const session = await account.createEmailPasswordSession({
+      email,
+      password,
+    });
+
+    if (!session) throw Error;
+
+    return session;
   } catch (error) {
     throw new Error(error as string);
   }
