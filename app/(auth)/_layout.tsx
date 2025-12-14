@@ -1,4 +1,5 @@
 import {
+  Button,
   Dimensions,
   Image,
   ImageBackground,
@@ -12,6 +13,7 @@ import { Slot } from 'expo-router';
 import { images } from '@/constants';
 import CustomInput from '@/components/CustomInput';
 import CustomButton from '@/components/CustomButton';
+import * as Sentry from '@sentry/react-native';
 
 export default function Layout() {
   return (
@@ -27,6 +29,7 @@ export default function Layout() {
           />
           <Image source={images.logo} className="absolute -bottom-16 z-10 size-48 self-center" />
         </View>
+
         <Slot />
       </ScrollView>
     </KeyboardAvoidingView>
