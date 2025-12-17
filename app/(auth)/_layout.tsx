@@ -9,13 +9,15 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { Slot } from 'expo-router';
+import { Redirect, Slot } from 'expo-router';
 import { images } from '@/constants';
-import CustomInput from '@/components/CustomInput';
-import CustomButton from '@/components/CustomButton';
-import * as Sentry from '@sentry/react-native';
+import useAuthStore from '@/store/auth.store';
 
-export default function Layout() {
+export default function AuthLayout() {
+  const { isAuthenticated } = useAuthStore();
+
+  if (isAuthenticated) return <Redirect href="/" />;
+
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView className="h-full bg-white" keyboardShouldPersistTaps="handled">

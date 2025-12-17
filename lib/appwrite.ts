@@ -6,7 +6,12 @@ export const appwriteConfig = {
   platform: 'com.isaiasiotti.foodelivery',
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
   databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID,
+  assestsBucketId: '6942e7420023d47de4b3',
   userCollectionId: 'user',
+  categoriesCollectionId: '6942dd4c000d9a250c72',
+  menuCollectionId: '6942e1e9001e641b3ba7',
+  customizationsCollectionId: 'customizations',
+  menuCustomizationCollectionId: '6942e575000d55d7df05',
 };
 
 export const client = new Client();
