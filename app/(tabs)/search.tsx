@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { FlatList, Text, View } from 'react-native';
 import React, { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -5,6 +6,11 @@ import useAppwrite from '@/lib/useAppwrite';
 import { getCategories, getMenu } from '@/lib/appwrite';
 import { useLocalSearchParams } from 'expo-router';
 import CartButton from '@/components/CartButton';
+import cn from 'clsx';
+import MenuCard from '@/components/MenuCard';
+import { MenuItem } from '@/type';
+import { SearchBar } from 'react-native-screens';
+import Filter from '@/components/Filter';
 
 const Search = () => {
   const { category, query } = useLocalSearchParams<{ query: string; category: string }>();
@@ -31,6 +37,7 @@ const Search = () => {
         numColumns={2}
         columnWrapperClassName="gap-7"
         contentContainerClassName="gap-7 px-5 pb-32"
+        ListEmptyComponent={() => !loading && <Text>No results!</Text>}
         ListHeaderComponent={() => (
           <View className="my-5 gap-5">
             <View className="flex-between w-full flex-row">
@@ -44,17 +51,16 @@ const Search = () => {
               <CartButton />
             </View>
 
-            <Text>Search Input</Text>
-            <Text>Filter</Text>
+            <SearchBar />
+            <Filter categories={categories!} />
           </View>
         )}
-        ListEmptyComponent={() => !loading && <Text>No results!</Text>}
         data={data}
         renderItem={({ item, index }) => {
           const isFirstRightColItem = index % 2 === 0;
           return (
-            <View className="max-w-[48%] flex-1">
-              <Text>Menu Card</Text>
+            <View className={cn('max-w-[48%] flex-1', !isFirstRightColItem ? 'mt-10' : 'mt-0')}>
+              <MenuCard item={item as unknown as MenuItem} />
             </View>
           );
         }}

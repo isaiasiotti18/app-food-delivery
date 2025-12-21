@@ -1,4 +1,4 @@
-import { CreateUserParams, SignInParams, GetMenuParams } from '@/type';
+import { CreateUserParams, SignInParams, GetMenuParams, Category } from '@/type';
 import { Account, Avatars, Client, Databases, ID, Query, Storage } from 'react-native-appwrite';
 
 export const appwriteConfig = {
@@ -117,7 +117,9 @@ export const getCategories = async () => {
       collectionId: appwriteConfig.categoriesCollectionId,
     });
 
-    return categories;
+    if (!categories) return null;
+
+    return categories.documents as unknown as Category[];
   } catch (error) {
     throw new Error(error as string);
   }
