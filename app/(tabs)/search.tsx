@@ -9,8 +9,8 @@ import CartButton from '@/components/CartButton';
 import cn from 'clsx';
 import MenuCard from '@/components/MenuCard';
 import { MenuItem } from '@/type';
-import { SearchBar } from 'react-native-screens';
 import Filter from '@/components/Filter';
+import Searchbar from '@/components/SearchBar';
 
 const Search = () => {
   const { category, query } = useLocalSearchParams<{ query: string; category: string }>();
@@ -42,7 +42,6 @@ const Search = () => {
           <View className="my-5 gap-5">
             <View className="flex-between w-full flex-row">
               <View className="flex-start">
-                <Text>Search</Text>
                 <View className="flex-start mt-0.5 flex-row gap-x-1">
                   <Text className="paragraph-semibold text-dark-100">Find your favorite food</Text>
                 </View>
@@ -51,7 +50,7 @@ const Search = () => {
               <CartButton />
             </View>
 
-            <SearchBar />
+            <Searchbar />
             <Filter categories={categories!} />
           </View>
         )}

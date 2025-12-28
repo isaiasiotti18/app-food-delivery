@@ -1,6 +1,5 @@
 import { Text, TouchableOpacity, Platform } from 'react-native';
 import { MenuItem } from '@/type';
-import { appwriteConfig } from '@/lib/appwrite';
 import { useCartStore } from '@/store/cart.store';
 import { Image } from 'expo-image';
 
